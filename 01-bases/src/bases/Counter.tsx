@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 interface Props {
-  initialValue: number;
+  initialValue?: number;
 }
 
 const Counter = ({ initialValue = 0 }: Props) => {
