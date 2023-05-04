@@ -4,9 +4,13 @@ import { ProductContext } from "./ProductCard";
 import noImage from "../assets/no-image.jpg";
 import styles from "../styles/styles.module.css";
 
-export const ProductImage = ({ img = "" }) => {
-  const { product } = useContext(ProductContext);
+interface Props {
+  img?: string;
+  className?: string;
+}
 
+export const ProductImage = ({ img, className }: Props) => {
+  const { product } = useContext(ProductContext);
   let imgToShow = "";
 
   if (img) {
@@ -18,6 +22,10 @@ export const ProductImage = ({ img = "" }) => {
   }
 
   return (
-    <img className={styles.productImg} src={imgToShow} alt="Product Img" />
+    <img
+      className={`${styles.productImg} ${className}`}
+      src={imgToShow}
+      alt="Product Img"
+    />
   );
 };
