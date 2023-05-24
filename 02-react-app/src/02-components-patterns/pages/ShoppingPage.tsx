@@ -27,9 +27,12 @@ interface ProductInCard extends Product {
 }
 
 export const ShoppingPage = () => {
-  const [shoppingCart, setShoppingCart] = useState<{
-    [key: string]: ProductInCard;
-  }>();
+  const [shoppingCart, setShoppingCart] = useState<{[key: string]: ProductInCard}>({});
+
+  const onProductCountChange = ({count, product}: {count: number, product: Product}) => {
+    console.log('onProductCountChange', count, product);
+    shoppingCart[product.id] = {...product, count};
+  };
 
   return (
     <div>
@@ -41,20 +44,23 @@ export const ShoppingPage = () => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-        }}>
+        }}
+      >
         {products.map((product) => (
           <ProductCard
-            product={product}
             className="bg-dark text-white"
-            key={product.id}>
+            key={product.id}
+            onChange={onProductCountChange}
+            product={product}
+          >
             <ProductImage
               className="custom-image"
               style={{
                 boxShadow: "10px 10px 10px rgba(0,0,0,0.2)",
               }}
             />
-            <ProductTitle className="text-white text-bold" />
-            <ProductButtons className="custom-buttons" />
+              <ProductTitle className="text-white text-bold" />
+              <ProductButtons className="custom-buttons" />
           </ProductCard>
         ))}
       </div>
@@ -64,7 +70,9 @@ export const ShoppingPage = () => {
           product={product2}
           className="bg-dark text-white"
           key={product2.id}
-          style={{ width: "100px" }}>
+          style={{ width: "100px" }}
+          onChange={onProductCountChange}
+        >
           <ProductImage
             className="custom-image"
             style={{
@@ -78,7 +86,8 @@ export const ShoppingPage = () => {
           product={product1}
           className="bg-dark text-white"
           key={product1.id}
-          style={{ width: "100px" }}>
+          style={{ width: "100px" }}
+        >
           <ProductImage
             className="custom-image"
             style={{
@@ -88,6 +97,12 @@ export const ShoppingPage = () => {
           <ProductButtons className="custom-buttons" />
         </ProductCard>
       </div>
+      <div>
+        <code>
+          { JSON.stringify(shoppingCart, null, 5) }
+        </code>
+      </div>
+
     </div>
   );
 };
