@@ -34,7 +34,6 @@ export const ShoppingPage = () => {
 
       if(count === 0){
         const { [product.id]: toDelete, ...rest } = oldShoppingCard;
-
         return rest;
       }
 
@@ -80,11 +79,12 @@ export const ShoppingPage = () => {
         {
           Object.entries(shoppingCart).map(([key, product]) => (
             <ProductCard
-              product={product}
               className="bg-dark text-white"
               key={key}
-              style={{ width: "100px" }}
               onChange={onProductCountChange}
+              product={product}
+              style={{ width: "100px" }}
+              value={ product.count }
             >
               <ProductImage
                 className="custom-image"
