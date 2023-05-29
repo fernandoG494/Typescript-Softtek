@@ -31,7 +31,6 @@ export const ShoppingPage = () => {
 
   const onProductCountChange = ({count, product}: {count: number, product: Product}) => {
     setShoppingCart(oldShoppingCard => {
-
       if(count === 0){
         const { [product.id]: toDelete, ...rest } = oldShoppingCard;
         return rest;
@@ -59,9 +58,10 @@ export const ShoppingPage = () => {
         {products.map((product) => (
           <ProductCard
             className="bg-dark text-white"
-            key={product.id}
-            onChange={onProductCountChange}
-            product={product}
+            key={ product.id }
+            onChange={ onProductCountChange }
+            product={ product }
+            value={ shoppingCart[product.id]?.count || 0 }
           >
             <ProductImage
               className="custom-image"
@@ -102,11 +102,6 @@ export const ShoppingPage = () => {
             </ProductCard>
           ))
         }
-      </div>
-      <div>
-        <code>
-          { JSON.stringify(shoppingCart, null, 5) }
-        </code>
       </div>
     </div>
   );
