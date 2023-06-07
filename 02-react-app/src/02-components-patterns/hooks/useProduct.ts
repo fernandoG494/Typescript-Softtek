@@ -15,11 +15,16 @@ export const useProduct = ({ onChange, product, value = 0, initialValues }: useP
 	const isControlled = useRef( !!onChange );
 
 	const increaseBy = (value: number) => {
-		if( isControlled.current) {
+		if ( isControlled.current) {
 			return onChange!({ count: value, product });
 		};
 
-		const newValue = Math.max(counter + value, 0);
+		let newValue = Math.max(counter + value, 0);
+		
+		if ( initialValues?.maxCount ) {
+				newValue = Math.min( newValue, initialValues.maxCount );
+		};
+
 		setCounter(newValue);
 		onChange && onChange({ count: newValue, product });
 	};
