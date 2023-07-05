@@ -1,5 +1,7 @@
-export { RegisterPage } from './RegisterPage';
-export { FormkBasicPage } from './FormkBasicPage';
-export { FormkYupPage } from './FormkYupPage';
-export { FormkComponents } from './FormkComponents';
+export { DynamicForm } from './DynamicForm';
 export { FormkAbstract } from "./FormkAbstract";
+export { FormkBasicPage } from './FormkBasicPage';
+export { FormkComponents } from './FormkComponents';
+export { FormkYupPage } from './FormkYupPage';
+export { RegisterFormikPage } from "./RegisterFormikPage";
+export { RegisterPage } from './RegisterPage';
