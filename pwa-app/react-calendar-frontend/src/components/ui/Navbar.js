@@ -11,8 +11,6 @@ export const Navbar = () => {
     dispatch( startLogout() );
   }
 
-  console.log('AAAAAA => ');
-
   return (
     <div className="navbar navbar-dark bg-dark mb-4">
       <span className="navbar-brand">
